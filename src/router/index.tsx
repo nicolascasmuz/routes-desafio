@@ -1,10 +1,33 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 import { Layout } from "components/Layout";
 import { Home } from "pages/Home";
 import { SearchResults } from "pages/SearchResults";
 
-export function AppRoutes() {
+export const indexRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/search/:query",
+        element: <SearchResults />,
+      },
+    ],
+  },
+]);
+
+/* export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -13,4 +36,4 @@ export function AppRoutes() {
       </Route>
     </Routes>
   );
-}
+} */
